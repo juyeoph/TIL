@@ -1,4 +1,4 @@
-# [TIL] HashMap vs. synchronizedMap vs. ConcurrentHashMap 비교 정리
+# HashMap vs. synchronizedMap vs. ConcurrentHashMap 비교 정리
 
 자바에서 `Map` 인터페이스는 매우 유용하지만, 멀티스레드 환경에서는 어떤 구현체를 선택하느냐에 따라 시스템의 안정성과 성능이 크게 달라질 수 있다. 각 `Map` 구현체의 특징과 올바른 사용처를 정리한다.
 
