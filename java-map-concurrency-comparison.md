@@ -69,7 +69,7 @@ ConcurrentMap<String, UserSession> userSessions = new ConcurrentHashMap<>();
 
 | 구분 | `HashMap` | `Collections.synchronizedMap` | `ConcurrentHashMap` |
 | :--- | :--- | :--- | :--- |
-| **스레드 안전성** | ❌ 없음 | ✅ 있음 | ✅ 있음 |
+| **스레드 안전성** | 없음 ❌ | 있음 ✅ | 있음 ✅ |
 | **잠금 방식** | - | 맵 전체를 잠금 (Global Lock) | 데이터 일부만 잠금 (Fine-grained Lock) |
 | **성능** | 단일 스레드에서 최상 | 동시성 환경에서 느림 | 동시성 환경에서 빠름 |
 | **추천 사용처** | 메서드 내 지역 변수 | 동시 수정이 드문 공유 데이터 | 동시 수정이 잦은 공유 데이터 |
