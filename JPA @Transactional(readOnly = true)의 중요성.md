@@ -1,4 +1,4 @@
-# 🚀 JPA `@Transactional(readOnly = true)`의 중요성
+# JPA `@Transactional(readOnly = true)`의 중요성
 
 오늘은 Spring Data JPA에서 트랜잭션 관리 시 사용되는 `@Transactional` 어노테션의 `readOnly = true` 속성이 어떤 의미를 가지며, 이를 명시하는 것이 왜 중요한지에 대해 정리합니다.
 
