@@ -1,8 +1,8 @@
-# ✨ JPA 영속성 컨텍스트와 `@Modifying` 문제 해결
+# JPA 영속성 컨텍스트와 `@Modifying` 문제 해결
 
 오늘은 JPA의 핵심 개념인 영속성 컨텍스트와, `@Query`, `@Modifying` 어노테이션을 함께 사용할 때 발생할 수 있는 동기화 문제 및 해결 방법에 대해 정리합니다.
 
-## 1. 🔍 영속성 컨텍스트(Persistence Context)란?
+## 1. 영속성 컨텍스트(Persistence Context)란?
 
 JPA(Java Persistence API)의 핵심 개념으로, 애플리케이션과 데이터베이스 사이에서 **엔티티(Entity) 객체를 효율적으로 관리하기 위한 논리적인 공간 또는 캐시**입니다. 영속성 컨텍스트는 `EntityManager`를 통해 접근하고 관리됩니다.
 
@@ -22,7 +22,7 @@ JPA(Java Persistence API)의 핵심 개념으로, 애플리케이션과 데이�
 * **지연 로딩 (Lazy Loading):**
     * 연관 관계에 있는 엔티티를 당장 필요로 하지 않을 때 즉시 로딩하지 않고, 실제로 사용되는 시점에 데이터베이스에서 데이터를 가져오는 기능입니다. 영속성 컨텍스트는 '프록시 객체'를 활용하여 이를 가능하게 합니다.
 
-## 2. ⚠️ `@Query`와 `@Modifying` 함께 사용 시 문제
+## 2. `@Query`와 `@Modifying` 함께 사용 시 문제
 
 `@Query` 어노테이션은 주로 `SELECT` 쿼리(조회)에 사용되며, `@Modifying` 어노테이션은 `INSERT`, `UPDATE`, `DELETE` 쿼리(변경)에 사용됩니다. 이 둘을 함께 사용할 때 영속성 컨텍스트 캐시와 데이터베이스 데이터가 동기화되지 않는 문제가 발생할 수 있습니다.
 
@@ -40,7 +40,7 @@ JPA(Java Persistence API)의 핵심 개념으로, 애플리케이션과 데이�
 3.  영속성 컨텍스트의 `id=1` 회원 객체는 **여전히 `name='홍길동'` 상태**를 유지.
 4.  같은 트랜잭션 내에서 `memberRepository.findById(1L)`를 다시 호출하면, DB에 가지 않고 1차 캐시에서 오래된 데이터(`name='홍길동'`)를 반환할 수 있음.
 
-## 3. ✅ 해결 방법: `@Modifying(clearAutomatically = true)`
+## 3. 해결 방법: `@Modifying(clearAutomatically = true)`
 
 이 문제를 해결하는 가장 일반적이고 효과적인 방법은 `@Modifying` 어노테이션에 `clearAutomatically = true` 옵션을 추가하는 것입니다.
 
