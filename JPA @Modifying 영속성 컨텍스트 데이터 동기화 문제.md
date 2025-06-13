@@ -38,7 +38,7 @@ JPA(Java Persistence API)의 핵심 개념으로, 애플리케이션과 데이�
 1.  `memberRepository.findById(1L)`로 회원을 조회하여 영속성 컨텍스트에 캐싱 (예: `id=1, name='홍길동'`).
 2.  `@Modifying` 쿼리 실행: `memberRepository.updateMemberName("김철수", 1L);` (DB에서 `id=1`의 이름이 `김철수`로 변경됨).
 3.  영속성 컨텍스트의 `id=1` 회원 객체는 **여전히 `name='홍길동'` 상태**를 유지.
-4.  같은 트랜잭션 내에서 `memberRepository.findById(1L)`를 다시 호출하면, DB에 가지 않고 1차 캐시에서 **오래된 데이터(`name='홍길동'`)**를 반환할 수 있음.
+4.  같은 트랜잭션 내에서 `memberRepository.findById(1L)`를 다시 호출하면, DB에 가지 않고 1차 캐시에서 오래된 데이터(`name='홍길동'`)를 반환할 수 있음.
 
 ## 3. ✅ 해결 방법: `@Modifying(clearAutomatically = true)`
 
